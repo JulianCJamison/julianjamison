@@ -1,0 +1,58 @@
+{
+  "name": "Julian C. Jamison",
+  "title": "Professor of Economics",
+  "institution": "University of Exeter",
+  "email": "j.jamison@exeter.ac.uk",
+  "bio": [
+    "I am a Professor of Economics at the University of Exeter, working at the intersection of behavioural economics, global health, and development. My research uses field experiments and randomised trials to understand how people make decisions — and how those decisions can be improved through well-designed policy.",
+    "My work spans cognitive performance and poverty, preference elicitation, wellbeing measurement, and the behavioural underpinnings of health outcomes. I have collaborated with governments, NGOs, and international organisations across Africa, Asia, and the Americas."
+  ],
+  "links": {
+    "cv": "cv.pdf",
+    "google_scholar": "https://scholar.google.com/",
+    "ssrn": "",
+    "twitter": ""
+  },
+  "tags": [
+    "Global Health & Development",
+    "Behavioural & Experimental",
+    "Methodology",
+    "Games, Auctions & Mathematics",
+    "Wellbeing, Welfare & Ethics"
+  ],
+  "papers": [
+    {
+      "id": 1,
+      "title": "Does Alleviating Poverty Increase Cognitive Performance? Short- and Long-Term Evidence from a Randomised Experiment",
+      "journal": "Review of Economics and Statistics",
+      "year": 2024,
+      "status": "forthcoming",
+      "coauthors": ["co-author names here"],
+      "tags": ["Global Health & Development", "Behavioural & Experimental"],
+      "abstract": "We examine the short- and long-term effects of a large-scale poverty alleviation programme on cognitive performance, using a randomised controlled trial. Results suggest meaningful improvements in executive function and memory that persist over time.",
+      "link": ""
+    },
+    {
+      "id": 2,
+      "title": "Measuring Preferences Over Risk: A Field Experiment",
+      "journal": "Journal of Development Economics",
+      "year": 2022,
+      "status": "published",
+      "coauthors": [],
+      "tags": ["Behavioural & Experimental", "Methodology"],
+      "abstract": "We implement a large-scale field experiment to elicit risk preferences using multiple incentivised methods, comparing their predictive validity for economic outcomes.",
+      "link": ""
+    },
+    {
+      "id": 3,
+      "title": "Subjective Wellbeing as a Policy Metric",
+      "journal": "World Bank Economic Review",
+      "year": 2021,
+      "status": "published",
+      "coauthors": [],
+      "tags": ["Wellbeing, Welfare & Ethics", "Methodology"],
+      "abstract": "We evaluate the reliability and validity of subjective wellbeing measures in low-income country contexts, and discuss implications for their use in cost-benefit analysis.",
+      "link": ""
+    }
+  ]
+}
