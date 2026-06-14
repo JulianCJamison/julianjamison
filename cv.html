@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Julian C. Jamison</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1a1a18;
+      --ink-mid: #3a3a35;
+      --ink-light: #7a7a72;
+      --rule: #d8d8d0;
+      --bg: #fafaf7;
+      --accent: #1a3a6b;
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --max: 740px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--serif);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: #1e3560;
+      padding: 0.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar a {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .topbar a:hover { color: #fff; }
+    .topbar-right { display: flex; gap: 1.5rem; }
+
+    /* ── HEADER ── */
+    header {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 3.5rem 2rem 2rem;
+      border-bottom: 2px solid var(--ink);
+    }
+    header h1 {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+    .header-sub {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-light);
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+    }
+    .header-contact {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-mid);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+    .header-contact a { color: var(--accent); text-decoration: none; }
+    .header-contact a:hover { text-decoration: underline; }
+
+    /* ── MAIN ── */
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* ── SECTIONS ── */
+    .cv-section { margin-top: 2.25rem; }
+    .cv-section h2 {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── ENTRIES ── */
+    .entry { margin-bottom: 1.1rem; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .entry-title {
+      font-style: italic;
+      font-size: 16px;
+      color: var(--ink);
+    }
+    .entry-date {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--ink-light);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .entry-role {
+      font-size: 15.5px;
+      color: var(--ink-mid);
+      margin-top: 0.1rem;
+    }
+    .entry-note {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--ink-light);
+      margin-top: 0.15rem;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+    .pub:last-child { border-bottom: none; }
+    .pub p {
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: var(--ink-mid);
+    }
+    .pub p em { color: var(--ink); font-style: italic; }
+    .pub p strong { color: var(--ink); font-style: normal; font-weight: 500; }
+    .pub-note {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--ink-light);
+      margin-top: 0.2rem;
+    }
+
+    /* ── SIMPLE LIST ── */
+    .cv-list { list-style: none; }
+    .cv-list li {
+      font-size: 15.5px;
+      color: var(--ink-mid);
+      padding: 0.2rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--rule);
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--ink-light);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 600px) {
+      header, main, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      header h1 { font-size: 1.9rem; }
+      .topbar { padding: 0.75rem 1.25rem; }
+    }
+
+    @media print {
+      .topbar { display: none; }
+      body { font-size: 11pt; background: white; }
+      header { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html">← Back to julianjamison.com</a>
+  <div class="topbar-right">
+    <a href="cv.pdf" download>↓ Download PDF</a>
+    <a href="https://scholar.google.com/citations?user=pJKPvUkAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+  </div>
+</div>
+
+<header>
+  <h1>Julian C. Jamison</h1>
+  <p class="header-sub">CURRICULUM VITAE</p>
+  <div class="header-contact">
+    <span>Professor of Economics · University of Exeter</span>
+    <a href="mailto:julison@gmail.com">julison@gmail.com</a>
+    <span>Oxford, UK</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="cv-section">
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Massachusetts Institute of Technology</span>
+        <span class="entry-date">1994–98</span>
+      </div>
+      <p class="entry-role">Ph.D. in Economics (advisors: Lones Smith and Peter Diamond)</p>
+      <p class="entry-note">Fields: Microeconomic Theory, Political Economy, Economic History</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">California Institute of Technology</span>
+        <span class="entry-date">1990–94</span>
+      </div>
+      <p class="entry-role">M.S. in Mathematics; B.S. (with honors) in Mathematics</p>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <h2>Professional Experience</h2>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Business School, University of Exeter</span>
+        <span class="entry-date">2018–</span>
+      </div>
+      <p class="entry-role">Professor, Department of Economics</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Nuffield College, Oxford</span>
+        <span class="entry-date">2020–</span>
+      </div>
+      <p class="entry-role">Associate Member</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Department of Economics, Oxford</span>
+        <span class="entry-date">2022–</span>
+      </div>
+      <p class="entry-role">Associate Member</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Jameel Poverty Action Lab (JPAL), MIT</span>
+        <span class="entry-date">2018–</span>
+      </div>
+      <p class="entry-role">Research Affiliate</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Development Economics Group, The World Bank</span>
+        <span class="entry-date">2015–18</span>
+      </div>
+      <p class="entry-role">Senior Economist, Mind-Behavior-Development Unit (eMBeD)</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Office of Research, Consumer Financial Protection Bureau</span>
+        <span class="entry-date">2012–15</span>
+      </div>
+      <p class="entry-role">Chief, Decision Making and Behavioral Studies Section (2013–15); Senior Economist (2012–13)</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Research Department, Federal Reserve Bank of Boston</span>
+        <span class="entry-date">2009–12</span>
+      </div>
+      <p class="entry-role">Senior Economist, Center for Behavioral Economics</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Brain and Creativity Institute, University of Southern California</span>
+        <span class="entry-date">2006–09</span>
+      </div>
+      <p class="entry-role">Research Assistant Professor of Psychology</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">School of Public Health, UC Berkeley (and UCSF)</span>
+        <span class="entry-date">2004–06</span>
+      </div>
+      <p class="entry-role">Fellow, Robert Wood Johnson Health &amp; Society Scholars Program</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Kellogg School of Management, Northwestern University</span>
+        <span class="entry-date">1999–2004</span>
+      </div>
+      <p class="entry-role">Assistant Professor, Managerial Economics and Decision Science</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Division of Social Sciences, California Institute of Technology</span>
+        <span class="entry-date">1998–99</span>
+      </div>
+      <p class="entry-role">Postdoctoral Scholar</p>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <h2>Journal Articles</h2>
+
+    <div class="pub"><p>"Five-Year Impacts of Group-Based Financial Education and Savings Promotion for Ugandan Youth" (with S Horn, D Karlan, and J Zinman), <em>Review of Economics and Statistics</em>, <strong>108</strong> (2026), 257–71.</p></div>
+    <div class="pub"><p>"Persistent yet Ameliorable COVID-19 Impacts on Female Entrepreneurship: Experimental Evidence from Kenya" (with F Campos, M Hernandez de Benito, A Safir, and B Zia), <em>Journal of Development Economics</em>, <strong>177</strong> (2025), 103546.</p></div>
+    <div class="pub"><p>"Does alleviating poverty increase cognitive performance? Short and long term evidence from a randomized controlled trial" (with B Szaszi, B Palfi, G Neszveda, A Taka, P Szécsi, C Blattman, and M Sheridan), <em>Cortex</em>, <strong>169</strong> (Dec 2023), 81–94.</p></div>
+    <div class="pub"><p>"Cognitive behavior therapy reduces crime and violence over 10 years: Experimental evidence" (with C Blattman, S Chaskel, and M Sheridan), <em>American Economic Review: Insights</em>, <strong>5:4</strong> (2023), 527–45.</p></div>
+    <div class="pub"><p>"Shared Decision-Making: Can Improved Counseling Increase Willingness to Pay for Modern Contraceptives?" (with S Athey, K Bergstrom, V Hadad, B Ozler, L Parisotto, and JD Sama), <em>Science Advances</em>, <strong>9:40</strong> (6 Oct 2023).</p></div>
+    <div class="pub"><p>"The Relationship between Conflicts, Economic Shocks, and Death with Depression, Economic Activities, and Human Capital Investment in Nigeria" (with R Sato, K McGee, J Perng, and T Tanaka), <em>Medicine, Conflict, and Survival</em>, <strong>38:3</strong> (2022), 170–83.</p></div>
+    <div class="pub"><p>"Credit Building or Credit Crumbling? A Credit Builder Loan's Effects on Credit Scores and Predictive Power" (with J Burke, D Karlan, K Mihaly, and J Zinman), <em>Review of Financial Studies</em> (2022), DOI: 10.1093/rfs/hhac060.</p></div>
+    <div class="pub"><p>"Computational Ethics" (with E Awad et al.), <em>Trends in Cognitive Sciences</em>, <strong>26:5</strong> (2022), 388–405.</p></div>
+    <div class="pub"><p>"The effects of text reminders on the utilization of family planning services: Evidence from a randomized controlled trial in urban Mozambique" (with J Leight, C Hensly, M Chissano, E Safran, and L Ali), <em>BMJ Global Health</em>, <strong>7</strong> (2022), e007862.</p></div>
+    <div class="pub"><p>"Cooperation in the Commons: Community-Based Rangeland Management in Namibia" (with DL Coppock, L Crowley, SL Durham, D Groves, D Karlan, BE Norton, and RD Ramsey), <em>Nature Communications Earth &amp; Environment</em>, <strong>3</strong> (2022), article 32.</p></div>
+    <div class="pub"><p>"Motivating Bureaucrats through Social Recognition: External Validity — A Tale of Two States" (with V Gauri, N Mažar, and O Ozier), <em>Organizational Behavior and Human Decision Processes</em>, <strong>163</strong> (2021), 117–31.</p></div>
+    <div class="pub"><p>"Comparing the impact on COVID-19 mortality of self-imposed behavior change and of government regulations across 13 countries" (with D Bundy, DT Jamison, J Spitz, and S Verguet), <em>Health Services Research</em>, <strong>56:5</strong> (2021), 874–84.</p></div>
+    <div class="pub"><p>"Unequal Consequences of COVID-19: Representative Evidence from Six Countries" (with M Belot, S Choi, E Tripodi, E van den Broek-Altenburg, and NW Papageorge), <em>Review of Economics of the Household</em> (2021), DOI: 10.1007/s11150-021-09560-z.</p></div>
+    <div class="pub"><p>"Applying Behavioral Insights to Tax Compliance: Experimental Evidence from Latvia" (with N Mažar and I Sen), <em>Journal of Tax Administration</em>, <strong>6:2</strong> (2021), 6–32.</p></div>
+    <div class="pub"><p>"Choice Architecture to Improve Financial Decision Making" (with D Beckett, J Carpenter, E Huet-Vaughn, P Matthews, and A Robbett), <em>Review of Economics and Statistics</em>, <strong>103:1</strong> (2021), 102–18.</p></div>
+    <div class="pub"><p>"Socio-Demographic Factors Associated with Self-Protecting Behavior during the Covid-19 Pandemic" (with NW Papageorge, MV Zahn, M Belot, E Broek-Altenburg, S Choi, and E Tripodi), <em>Journal of Population Economics</em> (2021), DOI: 10.1007/s00148-020-00818-x.</p></div>
+    <div class="pub"><p>"Six-Country Survey on COVID-19" (with M Belot, S Choi, NW Papageorge, E Tripodi, and E van den Broek-Altenburg), <em>COVID Economics</em>, <strong>17</strong> (May 13, 2020), 205–19.</p></div>
+    <div class="pub"><p>"Valuable Cheap Talk and Equilibrium Selection," <em>Games</em>, <strong>11:3</strong> (2020), 34.</p></div>
+    <div class="pub"><p>"Don't Swipe the Small Stuff: A Randomized Evaluation of Rules of Thumb-based Financial Education" (with R Daniels, D Hanson, C Stacy, and B Theodos), <em>Journal of Consumer Affairs</em>, <strong>54</strong> (2020), 701–22.</p></div>
+    <div class="pub"><p>"The Entry of Randomized Assignment into the Social Sciences," <em>Journal of Causal Inference</em>, <strong>7:1</strong> (2019).</p></div>
+    <div class="pub"><p>"Accounting for Timing when Assessing Health-Related Policies" (with K Claxton et al.), <em>Journal of Benefit-Cost Analysis</em>, <strong>10:S1</strong> (2019), 73–105.</p></div>
+    <div class="pub"><p>"Risk Preferences in Future Military Leaders" (with P Bell, R Engel, D Hudson, and W Skimmyhorn), <em>Journal of Behavioral Economics for Policy</em>, <strong>2:2</strong> (2018), 11–24.</p></div>
+    <div class="pub"><p>"Reducing Crime and Violence: Experimental Evidence on Adult Noncognitive Investments in Liberia" (with C Blattman and M Sheridan), <em>American Economic Review</em>, <strong>107:4</strong> (2017), 1165–1206.</p></div>
+    <div class="pub"><p>"Overcoming Behavioral Obstacles to Escaping Poverty" (with C Bryan, N Mažar et al.), <em>Behavioral Science &amp; Policy</em>, <strong>3:1</strong> (2017), 81–92.</p></div>
+    <div class="pub"><p>"Social Learning about Environmental Innovations: Experimental Analysis of Adoption Timing" (with D Owens and G Woroch), <em>Strategic Behavior and the Environment</em>, <strong>7:1–2</strong> (2017), 135–78.</p></div>
+    <div class="pub"><p>"Behaviorally Informed Policies for Household Financial Decisionmaking" (with B Madrian, HE Hershfield, AB Sussman et al.), <em>Behavioral Science &amp; Policy</em>, <strong>3:1</strong> (2017), 27–42.</p></div>
+    <div class="pub"><p>"Perceptions Regarding the Value of Life Before and After Birth," <em>Reproductive System and Sexual Disorders</em>, <strong>5:4</strong> (2016), 1000195.</p></div>
+    <div class="pub"><p>"Measuring the Measurement Error: A Method to Qualitatively Validate Survey Data" (with C Blattman, T Koroknay-Palicz, K Rodrigues, and M Sheridan), <em>Journal of Development Economics</em>, <strong>120</strong> (2016), 99–112.</p></div>
+    <div class="pub"><p>"The Returns to Cash and Microenterprise Support among the Ultra-Poor: A Field Experiment" (with C Blattman, E Green, C Lehmann, and J Annan), <em>American Economic Journal: Applied Economics</em>, <strong>8:2</strong> (2016), 35–64.</p></div>
+    <div class="pub"><p>"Does poverty alleviation decrease depression symptoms in post-conflict settings? A cluster-randomized trial of microenterprise assistance in northern Uganda" (with E Green, J Annan, and C Blattman), <em>Global Mental Health</em>, <strong>3</strong> (2016) e7.</p></div>
+    <div class="pub"><p>"Candy Elasticity: Halloween Experiments on Public Political Statements" (with D Karlan), <em>Economic Inquiry</em>, <strong>54:1</strong> (2016), 543–7.</p></div>
+    <div class="pub"><p>"Women's entrepreneurship and intimate partner violence: A cluster randomized trial of microenterprise assistance and partner participation in post-conflict Uganda" (with E Green, C Blattman, and J Annan), <em>Social Science &amp; Medicine</em>, <strong>133</strong> (2015), 177–88.</p></div>
+    <div class="pub"><p>"Selecting Public Goods Institutions: Who Likes to Punish and Reward?" (with M Drouvelis), <em>Southern Economic Journal</em>, <strong>82:2</strong> (2015), 501–34.</p></div>
+    <div class="pub"><p>"Predicting Health Behaviors with Economic Preferences and Locus of Control" (with L Conell-Price), <em>Journal of Behavioral and Experimental Economics</em>, <strong>54</strong> (2015), 1–9.</p></div>
+    <div class="pub"><p>"Two Examples of Equilibrium Nonexistence," <em>Mathematical Economics Letters</em>, <strong>1:2–4</strong> (2014), 55–60.</p></div>
+    <div class="pub"><p>"Renegotiation Perfection in Infinite Games," <em>Game Theory</em>, Article 742508 (2014).</p></div>
+    <div class="pub"><p>"Mixed Method Evaluation of a Passive mHealth Sexual Information Texting Service in Uganda" (with D Karlan and P Raffler), <em>Information Technologies &amp; International Development</em>, <strong>9:3</strong> (2013), 1–28.</p></div>
+    <div class="pub"><p>"Ambiguous Solicitation: Ambiguous Prescription" (with R Gazzale, A Karlan, and D Karlan), <em>Economic Inquiry</em>, <strong>51:1</strong> (2013), 1002–11.</p></div>
+    <div class="pub"><p>"Games with Synergistic Utilities," <em>Games</em>, <strong>3:1</strong> (2012), 41–55.</p></div>
+    <div class="pub"><p>"Shifting Confidence in Home Ownership: The Great Recession" (with A Bracha), <em>B.E. Journal of Macroeconomics</em>, <strong>12:3</strong> (2012), Article 5.</p></div>
+    <div class="pub"><p>"Incentivizing Safe Sex: A randomized trial of conditional cash transfers for HIV and STI prevention in rural Tanzania" (with D de Walque et al.), <em>BMJ Open</em>, <strong>2:1</strong> (2012).</p></div>
+    <div class="pub"><p>"Strategic Choice of Preferences: The Persona Model" (with DH Wolpert, D Newth, and M Harre), <em>B.E. Journal of Theoretical Economics</em>, <strong>11:1</strong> (2011), ISSN 1935-1704.</p></div>
+    <div class="pub"><p>"Characterizing the Amount and Speed of Discounting Procedures" (with DT Jamison), <em>Journal of Benefit-Cost Analysis</em>, <strong>2:2</strong> (2011), Article 1.</p></div>
+    <div class="pub"><p>"Multiple Selves in Intertemporal Choice" (with JS Wegener), <em>Journal of Economic Psychology</em>, <strong>31</strong> (2010), 832–9.</p></div>
+    <div class="pub"><p>"Methodological Challenges in Psychiatric Treatment Adherence Research" (with D Velligan et al.), <em>Clinical Schizophrenia &amp; Related Psychoses</em>, <strong>4:1</strong> (2010), 74–91.</p></div>
+    <div class="pub"><p>"When Curiosity Kills the Profits: An Experimental Examination" (with D Karlan), <em>Games and Economic Behavior</em>, <strong>66</strong> (2009), 830–40.</p></div>
+    <div class="pub"><p>"Well-Being and Neuroeconomics," <em>Economics and Philosophy</em>, <strong>24:3</strong> (2008), 407–18.</p></div>
+    <div class="pub"><p>"To Deceive or Not to Deceive: The Effect of Deception on Behavior in Future Laboratory Experiments" (with D Karlan and L Schechter), <em>Journal of Economic Behavior and Organization</em>, <strong>68</strong> (2008), 477–88.</p></div>
+    <div class="pub"><p>"Sequential Common-Value Auctions with Asymmetrically Informed Bidders" (with J Hörner), <em>Review of Economic Studies</em>, <strong>75</strong> (2008), 475–98.</p></div>
+    <div class="pub"><p>"Collusion with (Almost) No Information" (with J Hörner), <em>RAND Journal of Economics</em>, <strong>38:3</strong> (2007), 804–22.</p></div>
+    <div class="pub"><p>"What's in the Dictionary (or Is It?)" (with J Hörner), <em>Journal of Quantitative Linguistics</em>, <strong>14:2</strong> (2007), 215–21.</p></div>
+    <div class="pub"><p>"Do Risk-Takers Floss?" <em>American Journal of Epidemiology</em>, <strong>163:11</strong> (2006), S63.</p></div>
+    <div class="pub"><p>"The Le Chatelier Principle in Lattices," <em>Economics Bulletin</em>, <strong>3:2</strong> (2006), 1–9.</p></div>
+    <div class="pub"><p>"Lithium Revisited: Savings Brought About by the Use of Lithium, 1970–1991" (with RJ Wyatt and I Henter), <em>Psychiatric Quarterly</em>, <strong>72:2</strong> (Summer 2001), 149–66.</p></div>
+    <div class="pub"><p>"Costly Offers and the Equilibration Properties of the Multiple Unit Double Auction Under Conditions of Unpredictable Shifts of Demand and Supply" (with C Plott), <em>Journal of Economic Behavior and Organization</em>, <strong>32</strong> (April 1997), 591–612.</p>
+    <p class="pub-note">Reprinted in <em>Market Institutions and Price Discovery: Collected Papers (II)</em>, by Charles Plott, Edward Elgar (2001).</p></div>
+  </div>
+
+  <div class="cv-section">
+    <h2>Book Chapters</h2>
+    <div class="pub"><p>"The Role of School Closures and the Education System in Pandemic Preparedness and Response" (with D Bundy, L Schultz et al.), in <em>DCP4 Vol 2: Investing in Pandemic Prevention, Preparedness, and Response</em>, S Sharma et al. (eds.), World Bank (2026).</p></div>
+    <div class="pub"><p>"Inequality in Survival" (with DT Jamison, OF Norheim, and S Verguet), in <em>Global Health Priority-Setting</em>, Norheim, Emanuel, and Millum (eds.), Oxford (2020).</p></div>
+    <div class="pub"><p>"Schelling Formalized: Strategic Choices of Non-Rational Behavior" (with DH Wolpert), in <em>Evolution and Rationality</em>, Binmore and Okasha (eds.), Cambridge University Press (2012).</p></div>
+    <div class="pub"><p>"Toward a Theory of Syntax and Persuasive Communication," in <em>Exact Methods in the Study of Language and Text</em>, Grzybek and Köhler (eds.), de Gruyter (2007).</p></div>
+    <div class="pub"><p>"Incorporating Deaths Near the Time of Birth into Estimates of the Global Burden of Disease" (with DT Jamison, SA Shahid-Salles, JE Lawn, and J Zupan), in <em>The Global Burden of Disease and Risk Factors</em>, A Lopez et al. (eds.), Oxford (2006).</p></div>
+  </div>
+
+  <div class="cv-section">
+    <h2>Working Papers</h2>
+    <div class="pub"><p>"How Effective Is (More) Money? Randomizing Unconditional Cash Transfer Amounts in the US" (with A Jaroszewicz, JM Jachimowicz, and O Hauser); provisionally accepted at <em>Nature Communications</em>.</p></div>
+    <div class="pub"><p>"The Infeasibility of Democratic Deliberation: Voicelessness"; revised for <em>Bioethics</em>.</p></div>
+    <div class="pub"><p>"The impact of hunger and resource availability on prosocial behavior: A developmental cross-national investigation" (with J Cowell et al.); submitted.</p></div>
+    <div class="pub"><p>"Socioemotional Skills in Sub-Saharan Africa: Validating and Comparing Behavioral and Self-Reported Measures" (with CA Delavallade, S Das, LM Rouanet, A Clerkin, and C Gonzalez); submitted.</p></div>
+    <div class="pub"><p>"Loss Aversion as Optimal Attention Allocation: Mismatches Are the Squeaky Wheel"; submitted.</p></div>
+    <div class="pub"><p>"Instead of neglect and despair: priorities for investing in pandemic prevention, preparedness, and response" (with OF Norheim, S Sharma et al.); submitted.</p></div>
+    <div class="pub"><p>"Capital, Capability, or Confidence: Experimental Evidence on Youth Entrepreneurship in Kenya" (with Y Domenella, M Hernandez-de-Benito, A Safir, and B Zia).</p></div>
+    <div class="pub"><p>"Hotelling's Spatial Model with Finitely Many Consumers" (with J Hörner).</p></div>
+    <div class="pub"><p>"Valuing Future Lives: A Perspective-weighted Approach" (with G Alexandrie).</p></div>
+  </div>
+
+  <div class="cv-section">
+    <h2>Professional Service</h2>
+    <ul class="cv-list">
+      <li>Lead for Economics Group, Global Priorities Institute: 2024–25</li>
+      <li>Director of Research for Economics, Exeter: 2018–22</li>
+      <li>Academic Affiliate, United States Office of Evaluation Sciences (OES): 2018–22</li>
+      <li>Associate Editor, <em>Behavioral Science &amp; Policy</em> and <em>The Unjournal</em></li>
+      <li>Research Director, Berkeley Experimental Social Science Laboratory: 2004–6</li>
+      <li>PhD supervision: Vikas Chaudhary (Exeter 2021) and Cevdet Acu (Exeter 2023)</li>
+    </ul>
+  </div>
+
+  <div class="cv-section">
+    <h2>Visiting Positions</h2>
+    <div class="entry">
+      <div class="entry-header"><span class="entry-title">Social Sciences Division, California Institute of Technology</span><span class="entry-date">2026</span></div>
+    </div>
+    <div class="entry">
+      <div class="entry-header"><span class="entry-title">Global Priorities Institute, Oxford</span><span class="entry-date">2019–25</span></div>
+      <p class="entry-role">Senior Research Affiliate</p>
+    </div>
+    <div class="entry">
+      <div class="entry-header"><span class="entry-title">Department of Economics &amp; KSG, Harvard University</span><span class="entry-date">2010–12</span></div>
+    </div>
+    <div class="entry">
+      <div class="entry-header"><span class="entry-title">Women &amp; Public Policy Program, Harvard University</span><span class="entry-date">2009–12</span></div>
+    </div>
+    <div class="entry">
+      <div class="entry-header"><span class="entry-title">Department of Economics, Yale University</span><span class="entry-date">2008–10</span></div>
+    </div>
+    <div class="entry">
+      <div class="entry-header"><span class="entry-title">Intelligent Systems Division, NASA Ames Research Center</span><span class="entry-date">2008</span></div>
+    </div>
+    <div class="entry">
+      <div class="entry-header"><span class="entry-title">Finance and Economics, HEC School of Management</span><span class="entry-date">2007</span></div>
+    </div>
+    <div class="entry">
+      <div class="entry-header"><span class="entry-title">Social Sciences Division, California Institute of Technology</span><span class="entry-date">2006–07</span></div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <h2>Honors &amp; Awards</h2>
+    <ul class="cv-list">
+      <li>Robert A. Millikan Scholarship and Carnation Fellowship (Caltech)</li>
+      <li>Honorable Mention (top 100 in North America), Putnam Mathematics Competition (1993)</li>
+      <li>Elected to <em>Tau Beta Pi</em> Engineering Honor Society</li>
+      <li>E.T. Bell Prize for Outstanding Undergraduate Mathematics Research (1994)</li>
+      <li>Dean's List for exceptional teaching (Kellogg)</li>
+      <li>Best Paper Award, <em>ConNEcs 2008</em> (Copenhagen)</li>
+      <li>Young Leader's Forum, National Committee on US-China Relations</li>
+      <li>Keynote Speaker, Behavioral Research for Emerging and Applied Knowledge (BREAK 2016)</li>
+      <li>World Bank Research Academy winner (2017)</li>
+      <li>President's Award for Innovation, World Bank (2018)</li>
+      <li>Keynote Speaker, 6th Annual Workshop on Behavioral Development Economics (UEA 2019)</li>
+      <li>First Place: Excellence in Using Evidence to Build Human Capital, HD Week (2019)</li>
+      <li>Outstanding Research Support Award, Dept of Economics at Exeter (2021–22)</li>
+    </ul>
+  </div>
+
+  <div class="cv-section">
+    <h2>Advisory Boards</h2>
+    <ul class="cv-list">
+      <li>Happier Lives Institute (UK)</li>
+      <li>Institute for Quality Research &amp; Development (Liberia)</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  <span>Julian C. Jamison · University of Exeter</span>
+  <span>Updated 2026</span>
+</footer>
+
+</body>
+</html>
