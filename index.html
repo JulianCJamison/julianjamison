@@ -515,8 +515,7 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#home" class="nav-left">
-    <!-- Replace this div with: <img src="exeter-logo.png" alt="University of Exeter" style="height:32px;width:auto;"> when you have the logo -->
-    <div class="nav-logo">UoE</div>
+    <img src="exeter-logo.png" alt="University of Exeter" style="height:32px;width:auto;">
     <span class="nav-name">Julian C. Jamison</span>
   </a>
   <ul class="nav-links">
@@ -690,15 +689,7 @@ function init(d) {
     }
   });
 
-  const affilWrap = document.getElementById('affil-wrap');
-  [d.title, d.institution].forEach(text => {
-    if (text) {
-      const div = document.createElement('div');
-      div.className = 'affil-tag';
-      div.textContent = text;
-      affilWrap.appendChild(div);
-    }
-  });
+  // affiliation tags under photo removed
 
   // ── Research intro + tags explainer ──
   const introEl = document.getElementById('research-intro');
