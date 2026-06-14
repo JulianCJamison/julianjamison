@@ -14,20 +14,23 @@
       --ink: #1a1a18;
       --ink-mid: #4a4a45;
       --ink-light: #8a8a82;
-      --rule: #ddddd5;
+      --rule: #d8d8d0;
       --bg: #f7f7f4;
       --bg-card: #ffffff;
       --accent: #1a3a6b;
+      --accent-light: #2a4f8f;
       --accent-soft: #e8edf5;
+      --hero-bg: #0f1f3d;
+      --footer-bg: #1e3560;
       --tag-bg: #f0f0ea;
       --tag-text: #4a4a45;
+      --nav-bg: #4a5260;
       --serif: 'EB Garamond', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
       --max: 900px;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--sans);
       background: var(--bg);
@@ -37,7 +40,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ─────────────────────────────── */
+    /* ── NAV ────────────────────────────────── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -47,46 +50,61 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2.5rem;
-      background: rgba(247,247,244,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.3s, background 0.3s;
+      background: var(--hero-bg);
+      transition: background 0.35s, box-shadow 0.35s;
     }
     nav.scrolled {
-      border-bottom-color: var(--rule);
-      background: rgba(247,247,244,0.97);
+      background: var(--nav-bg);
+      box-shadow: 0 1px 16px rgba(0,0,0,0.18);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+    /* Exeter logo placeholder — swap <div> for <img src="exeter-logo.png"> when ready */
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
     }
     .nav-name {
       font-family: var(--serif);
       font-size: 16.5px;
-      color: var(--ink);
-      text-decoration: none;
+      color: rgba(255,255,255,0.9);
       letter-spacing: 0.01em;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
     .nav-links a {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 500;
-      color: var(--ink-mid);
+      color: rgba(255,255,255,0.65);
       text-decoration: none;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: color 0.15s;
     }
-    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover { color: #fff; }
 
-    /* ── HERO ────────────────────────────── */
+    /* ── HOME / HERO ────────────────────────── */
     .hero {
       position: relative;
       min-height: 100svh;
       display: flex;
       align-items: stretch;
       overflow: hidden;
-      background: #0f1f3d;
+      background: var(--hero-bg);
     }
-
-    /* subtle grain overlay */
     .hero::before {
       content: '';
       position: absolute;
@@ -97,7 +115,6 @@
       pointer-events: none;
       z-index: 1;
     }
-
     .hero-photo-bg {
       position: absolute;
       right: 0; top: 0; bottom: 0;
@@ -114,24 +131,21 @@
       opacity: 0.85;
       mix-blend-mode: luminosity;
     }
-    /* gradient fade on left edge of photo */
     .hero-photo-bg::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, #0f1f3d 0%, transparent 35%);
+      background: linear-gradient(to right, var(--hero-bg) 0%, transparent 38%);
       z-index: 1;
     }
-    /* gradient fade at bottom */
     .hero-photo-bg::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 30%;
-      background: linear-gradient(to top, #0f1f3d 0%, transparent 100%);
+      height: 28%;
+      background: linear-gradient(to top, var(--hero-bg) 0%, transparent 100%);
       z-index: 1;
     }
-
     .hero-content {
       position: relative;
       z-index: 2;
@@ -143,16 +157,14 @@
       flex-direction: column;
       justify-content: center;
     }
-
     .hero-eyebrow {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 1.25rem;
     }
-
     .hero h1 {
       font-family: var(--serif);
       font-size: clamp(2.8rem, 6vw, 4.4rem);
@@ -163,104 +175,101 @@
       margin-bottom: 1rem;
       max-width: 520px;
     }
-
     .hero-subtitle {
       font-size: 15px;
       font-weight: 300;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.55);
       letter-spacing: 0.02em;
       margin-bottom: 2.5rem;
     }
-
     .hero-divider {
-      width: 40px;
-      height: 1px;
-      background: rgba(255,255,255,0.25);
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.22);
       margin-bottom: 2rem;
     }
-
     .hero-bio-short {
       font-size: 15.5px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.72);
+      line-height: 1.78;
+      color: rgba(255,255,255,0.7);
       max-width: 480px;
-      margin-bottom: 2.5rem;
+      margin-bottom: 0;
     }
-
-    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 10px 22px;
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      border-radius: 3px;
-      transition: all 0.18s;
-      cursor: pointer;
-      border: none;
-      font-family: var(--sans);
-      letter-spacing: 0.02em;
-    }
-    .btn-primary {
-      background: #fff;
-      color: var(--accent);
-    }
-    .btn-primary:hover { background: #e8edf5; }
-    .btn-ghost {
-      background: transparent;
-      color: rgba(255,255,255,0.8);
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-    .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.6);
-      color: #fff;
-    }
-
-    /* scroll indicator */
     .scroll-hint {
       position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
+      bottom: 2.5rem; left: 50%;
       transform: translateX(-50%);
       z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
-      color: rgba(255,255,255,0.3);
-      font-size: 11px;
+      color: rgba(255,255,255,0.28);
+      font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      animation: bounce 2s ease-in-out infinite;
+      animation: bounce 2.2s ease-in-out infinite;
     }
-    .scroll-hint svg { opacity: 0.4; }
     @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(5px); }
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      55% { transform: translateX(-50%) translateY(6px); }
     }
 
-    /* ── PAGE CONTENT ────────────────────── */
+    /* ── SHARED PAGE ────────────────────────── */
     .page { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
 
-    section { padding: 4rem 0; border-bottom: 1px solid var(--rule); }
-    section:last-child { border-bottom: none; padding-bottom: 5rem; }
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    section:last-of-type { border-bottom: none; }
 
     .section-label {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--ink-light);
-      margin-bottom: 2.25rem;
+      margin-bottom: 2.5rem;
     }
 
-    /* ── ABOUT strip ─────────────────────── */
+    /* ── BUTTONS ────────────────────────────── */
+    .btn, .btn-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      border-radius: 3px;
+      cursor: pointer;
+      border: none;
+      font-family: var(--sans);
+      font-weight: 500;
+      transition: all 0.18s;
+      letter-spacing: 0.02em;
+    }
+    .btn { padding: 10px 22px; font-size: 13px; }
+    .btn-sm { padding: 7px 16px; font-size: 12.5px; }
+
+    .btn-white { background: #fff; color: var(--accent); }
+    .btn-white:hover { background: #e8edf5; }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.78);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #0f2a52; }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink-mid);
+      border: 1px solid var(--rule);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── ABOUT ──────────────────────────────── */
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 200px;
+      grid-template-columns: 1fr 210px;
       gap: 4rem;
       align-items: start;
     }
@@ -272,33 +281,9 @@
     }
     .about-bio p:last-child { margin-bottom: 0; }
     .about-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
-    .btn-sm {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 16px;
-      font-size: 12.5px;
-      font-weight: 500;
-      text-decoration: none;
-      border-radius: 3px;
-      transition: all 0.15s;
-      cursor: pointer;
-      border: none;
-      font-family: var(--sans);
-    }
-    .btn-sm-primary { background: var(--accent); color: #fff; }
-    .btn-sm-primary:hover { background: #0f2a52; }
-    .btn-sm-secondary {
-      background: transparent;
-      color: var(--ink-mid);
-      border: 1px solid var(--rule);
-    }
-    .btn-sm-secondary:hover { border-color: var(--ink-mid); color: var(--ink); }
-
     .about-photo-col { display: flex; flex-direction: column; gap: 1.25rem; }
     .about-photo {
-      width: 200px;
-      height: 260px;
+      width: 210px; height: 270px;
       object-fit: cover;
       object-position: center top;
       border-radius: 3px;
@@ -306,8 +291,7 @@
       box-shadow: 0 4px 24px rgba(0,0,0,0.1);
     }
     .about-photo-placeholder {
-      width: 200px;
-      height: 260px;
+      width: 210px; height: 270px;
       background: var(--accent-soft);
       border-radius: 3px;
       display: flex;
@@ -317,11 +301,7 @@
       font-family: var(--serif);
       font-size: 3rem;
     }
-    .affiliation-logos {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .affil-tags { display: flex; flex-direction: column; gap: 7px; }
     .affil-tag {
       font-size: 11.5px;
       color: var(--ink-light);
@@ -332,13 +312,26 @@
       background: var(--bg-card);
     }
 
-    /* ── RESEARCH ────────────────────────── */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    /* ── RESEARCH ───────────────────────────── */
+    .research-intro {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      max-width: 680px;
       margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--rule);
     }
+    .research-intro p { margin-bottom: 0.9rem; }
+    .research-intro p:last-child { margin-bottom: 0; }
+    .tags-explainer {
+      font-size: 13px;
+      color: var(--ink-light);
+      margin-top: 1.25rem;
+      font-style: italic;
+    }
+
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2.5rem; }
     .filter-btn {
       padding: 6px 16px;
       font-size: 12.5px;
@@ -352,159 +345,168 @@
       font-family: var(--sans);
     }
     .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
+    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
     .papers-list { display: flex; flex-direction: column; }
-    .paper {
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
+    .paper { padding: 1.75rem 0; border-bottom: 1px solid var(--rule); }
     .paper:last-child { border-bottom: none; }
     .paper.hidden { display: none; }
-
-    .paper-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 0.45rem;
-    }
+    .paper-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 0.45rem; }
     .paper-journal { font-size: 12.5px; font-weight: 500; color: var(--accent); }
     .paper-year { font-size: 12.5px; color: var(--ink-light); }
     .paper-status {
-      font-size: 10.5px;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 3px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-size: 10.5px; font-weight: 600;
+      padding: 2px 8px; border-radius: 3px;
+      text-transform: uppercase; letter-spacing: 0.06em;
     }
     .status-forthcoming { background: #fef3e2; color: #92580a; }
     .status-published { background: #e5f5ee; color: #1a6b3c; }
     .status-working { background: #f0f0ea; color: #4a4a45; }
-
     .paper h3 {
       font-family: var(--serif);
-      font-size: 19px;
-      font-weight: 400;
-      line-height: 1.35;
-      color: var(--ink);
+      font-size: 19px; font-weight: 400;
+      line-height: 1.35; color: var(--ink);
       margin-bottom: 0.35rem;
     }
     .paper h3 a { color: inherit; text-decoration: none; }
     .paper h3 a:hover { color: var(--accent); }
-
     .paper-authors { font-size: 13px; color: var(--ink-light); margin-bottom: 0.65rem; }
     .paper-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
-      font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 3px;
-      background: var(--tag-bg);
-      color: var(--tag-text);
-      border: 1px solid var(--rule);
+      font-size: 11px; padding: 3px 10px;
+      border-radius: 3px; background: var(--tag-bg);
+      color: var(--tag-text); border: 1px solid var(--rule);
     }
     .paper-actions { display: flex; gap: 1.25rem; margin-top: 0.7rem; }
-    .paper-link {
-      font-size: 12.5px;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
+    .paper-link { font-size: 12.5px; color: var(--accent); text-decoration: none; font-weight: 500; }
     .paper-link:hover { text-decoration: underline; }
     .toggle-abstract {
-      font-size: 12.5px;
-      color: var(--ink-light);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      font-family: var(--sans);
+      font-size: 12.5px; color: var(--ink-light);
+      background: none; border: none; cursor: pointer;
+      padding: 0; font-family: var(--sans);
     }
     .toggle-abstract:hover { color: var(--ink); }
     .paper-abstract {
-      font-size: 14px;
-      color: var(--ink-mid);
-      line-height: 1.7;
-      max-width: 660px;
-      display: none;
-      margin-top: 0.75rem;
+      font-size: 14px; color: var(--ink-mid);
+      line-height: 1.7; max-width: 660px;
+      display: none; margin-top: 0.75rem;
       padding-left: 1rem;
       border-left: 2px solid var(--rule);
     }
     .paper-abstract.open { display: block; }
 
-    /* ── CV ──────────────────────────────── */
-    .cv-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2rem 2.5rem;
+    /* ── MEDIA ──────────────────────────────── */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .media-card {
+      background: var(--bg-card);
       border: 1px solid var(--rule);
       border-radius: 4px;
-      background: var(--bg-card);
-      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
-    .cv-card h3 {
+    .media-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(26,58,107,0.08);
+    }
+    .media-type {
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-light);
+    }
+    .media-type.video { color: #b45309; }
+    .media-type.article { color: #1a6b3c; }
+    .media-type.bio { color: #1a3a6b; }
+    .media-card h4 {
       font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      margin-bottom: 0.25rem;
+      font-size: 17px; font-weight: 400;
+      line-height: 1.35; color: var(--ink);
     }
-    .cv-card p { font-size: 13px; color: var(--ink-light); }
+    .media-card p {
+      font-size: 13px; color: var(--ink-light);
+      line-height: 1.5;
+    }
+    .media-card .media-arrow {
+      font-size: 12px; color: var(--accent);
+      margin-top: auto; padding-top: 0.5rem;
+    }
 
-    /* ── CONTACT ─────────────────────────── */
+    /* ── CONTACT / FOOTER SECTION (dark) ────── */
+    .section-dark {
+      background: var(--footer-bg);
+      margin: 0 -2.5rem;
+      padding: 4.5rem 2.5rem !important;
+      border-bottom: none !important;
+      border-radius: 0;
+    }
+    .section-dark .section-label { color: rgba(255,255,255,0.4); }
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
+      gap: 2.5rem;
     }
     .contact-item label {
       display: block;
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      margin-bottom: 0.4rem;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.5rem;
     }
     .contact-item a, .contact-item p {
-      font-size: 15px;
-      color: var(--ink-mid);
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      line-height: 1.5;
+    }
+    .contact-item a:hover { color: #fff; text-decoration: underline; }
+    .contact-cv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 0.4rem;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
       text-decoration: none;
     }
-    .contact-item a:hover { color: var(--accent); }
+    .contact-cv-link:hover { color: rgba(255,255,255,0.9); }
 
-    /* ── FOOTER ──────────────────────────── */
+    /* ── FOOTER ─────────────────────────────── */
     footer {
+      background: var(--footer-bg);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-inner {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 2rem 2.5rem;
-      border-top: 1px solid var(--rule);
+      padding: 1.5rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 12px;
-      color: var(--ink-light);
+      color: rgba(255,255,255,0.3);
     }
 
-    /* ── RESPONSIVE ──────────────────────── */
+    /* ── RESPONSIVE ─────────────────────────── */
     @media (max-width: 680px) {
       nav { padding: 0 1.25rem; }
-      .nav-links { gap: 1.25rem; }
+      .nav-links { gap: 1.1rem; }
       .page { padding: 0 1.25rem; }
       .hero-content { padding: 8rem 1.25rem 5rem; }
-      .hero-photo-bg { width: 100%; opacity: 0.15; }
-      .hero-photo-bg::before { background: linear-gradient(to right, #0f1f3d 0%, #0f1f3d 100%); }
+      .hero-photo-bg { width: 100%; opacity: 0.12; }
+      .hero-photo-bg::before { background: var(--hero-bg); }
       .about-grid { grid-template-columns: 1fr; }
-      .about-photo-col { flex-direction: row; align-items: center; }
+      .about-photo-col { flex-direction: row; align-items: flex-start; }
       .about-photo, .about-photo-placeholder { width: 120px; height: 155px; }
-      .cv-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .section-dark { margin: 0 -1.25rem; padding: 3.5rem 1.25rem !important; }
+      .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
@@ -512,30 +514,34 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-name">Julian C. Jamison</a>
+  <a href="#home" class="nav-left">
+    <!-- Replace this div with: <img src="exeter-logo.png" alt="University of Exeter" style="height:32px;width:auto;"> when you have the logo -->
+    <div class="nav-logo">UoE</div>
+    <span class="nav-name">Julian C. Jamison</span>
+  </a>
   <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
-    <li><a href="#cv">CV</a></li>
+    <li><a href="#media">Media</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
-<div class="hero" id="top">
-  <div class="hero-photo-bg" id="hero-photo-bg">
-    <!-- photo injected by JS -->
-  </div>
+<!-- HOME HERO -->
+<div class="hero" id="home">
+  <div class="hero-photo-bg" id="hero-photo-bg"></div>
   <div class="hero-content page">
-    <p class="hero-eyebrow">University of Exeter</p>
+    <p class="hero-eyebrow" id="hero-eyebrow"></p>
     <h1 id="hero-name">Julian C. Jamison</h1>
     <p class="hero-subtitle" id="hero-subtitle"></p>
     <div class="hero-divider"></div>
     <p class="hero-bio-short" id="hero-bio-short"></p>
-    <div class="hero-actions" id="hero-actions"></div>
   </div>
   <div class="scroll-hint">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+      <path d="M8 4v16M2 14l6 6 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 </div>
 
@@ -551,7 +557,7 @@
       </div>
       <div class="about-photo-col">
         <div id="about-photo-wrap"></div>
-        <div class="affiliation-logos" id="affil-wrap"></div>
+        <div class="affil-tags" id="affil-wrap"></div>
       </div>
     </div>
   </section>
@@ -559,121 +565,94 @@
   <!-- RESEARCH -->
   <section id="research">
     <p class="section-label">Research</p>
+    <div class="research-intro" id="research-intro"></div>
     <div class="filter-bar" id="filter-bar">
       <button class="filter-btn active" data-tag="all">All papers</button>
     </div>
     <div class="papers-list" id="papers-list"></div>
   </section>
 
-  <!-- CV -->
-  <section id="cv">
-    <p class="section-label">Curriculum Vitae</p>
-    <div class="cv-card">
-      <div>
-        <h3>Full Curriculum Vitae</h3>
-        <p>Complete academic record including positions, publications, and grants</p>
-      </div>
-      <a href="cv.pdf" class="btn-sm btn-sm-primary" download>↓ Download CV (PDF)</a>
-    </div>
+  <!-- MEDIA -->
+  <section id="media">
+    <p class="section-label">Media</p>
+    <div class="media-grid" id="media-grid"></div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <p class="section-label">Contact</p>
+  <!-- CONTACT (dark section) -->
+  <section id="contact" class="section-dark">
+    <p class="section-label">Contact &amp; CV</p>
     <div class="contact-grid" id="contact-grid"></div>
   </section>
 
 </main>
 
 <footer>
-  <span id="footer-name"></span>
-  <span id="footer-year"></span>
+  <div class="footer-inner">
+    <span id="footer-name"></span>
+    <span id="footer-year"></span>
+  </div>
 </footer>
 
 <script>
-// Nav scroll effect
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Load data
 fetch('data.json')
   .then(r => r.json())
   .then(init)
   .catch(e => console.error('Could not load data.json', e));
 
-function tryPhoto(ids, extensions, callback) {
-  // Try loading photo with multiple possible extensions
+function tryPhoto(candidates, callback) {
   let i = 0;
-  function tryNext() {
-    if (i >= extensions.length) { callback(null); return; }
-    const src = extensions[i++];
+  function next() {
+    if (i >= candidates.length) { callback(null); return; }
+    const src = candidates[i++];
     const img = new Image();
     img.onload = () => callback(src);
-    img.onerror = tryNext;
+    img.onerror = next;
     img.src = src;
   }
-  tryNext();
+  next();
 }
 
 function init(d) {
   document.title = d.name + ' — ' + d.title;
 
-  // Try loading photo (supports .jpg, .jpeg, .png, .webp)
-  tryPhoto(null, ['profile.jpg','profile.jpeg','profile.png','profile.webp'], src => {
+  // ── Photos ──
+  // Hero uses profile.jpg; About section uses about-photo.jpg (different/forward-facing)
+  // Falls back gracefully if either is missing
+  tryPhoto(['profile.jpg','profile.jpeg','profile.png','profile.webp'], heroSrc => {
     const bgEl = document.getElementById('hero-photo-bg');
-    const aboutWrap = document.getElementById('about-photo-wrap');
-    if (src) {
-      // Hero background photo
-      const heroImg = document.createElement('img');
-      heroImg.src = src;
-      heroImg.alt = d.name;
-      bgEl.appendChild(heroImg);
-      // About section photo
-      const aboutImg = document.createElement('img');
-      aboutImg.src = src;
-      aboutImg.alt = d.name;
-      aboutImg.className = 'about-photo';
-      aboutWrap.appendChild(aboutImg);
+    if (heroSrc) {
+      const img = document.createElement('img');
+      img.src = heroSrc; img.alt = d.name;
+      bgEl.appendChild(img);
+    }
+  });
+
+  tryPhoto(['about-photo.jpg','about-photo.jpeg','about-photo.png','profile.jpg','profile.jpeg','profile.png','profile.webp'], aboutSrc => {
+    const wrap = document.getElementById('about-photo-wrap');
+    if (aboutSrc) {
+      const img = document.createElement('img');
+      img.src = aboutSrc; img.alt = d.name;
+      img.className = 'about-photo';
+      wrap.appendChild(img);
     } else {
-      bgEl.style.background = '#1a2a45';
       const ph = document.createElement('div');
       ph.className = 'about-photo-placeholder';
       ph.textContent = d.name.split(' ').map(w=>w[0]).join('').slice(0,2);
-      aboutWrap.appendChild(ph);
+      wrap.appendChild(ph);
     }
   });
 
-  // Hero text
+  // ── Hero / Home ──
+  document.getElementById('hero-eyebrow').textContent = d.title + ' · ' + d.institution;
   document.getElementById('hero-name').textContent = d.name;
-  document.getElementById('hero-subtitle').textContent = d.title + ' · ' + d.institution;
-  document.getElementById('hero-bio-short').textContent = d.bio[0];
+  document.getElementById('hero-subtitle').textContent = d.home_tagline || '';
+  document.getElementById('hero-bio-short').textContent = d.home_text || d.bio[0];
 
-  // Hero action buttons
-  const heroActions = document.getElementById('hero-actions');
-  if (d.links.cv) {
-    const a = document.createElement('a');
-    a.href = d.links.cv; a.download = '';
-    a.className = 'btn btn-primary';
-    a.textContent = '↓ Download CV';
-    heroActions.appendChild(a);
-  }
-  const extLinks = [
-    {key:'google_scholar', label:'Google Scholar'},
-    {key:'ssrn', label:'SSRN'},
-    {key:'twitter', label:'Twitter / X'}
-  ];
-  extLinks.forEach(({key,label}) => {
-    if (d.links[key]) {
-      const a = document.createElement('a');
-      a.href = d.links[key]; a.target='_blank'; a.rel='noopener';
-      a.className = 'btn btn-ghost';
-      a.textContent = label;
-      heroActions.appendChild(a);
-    }
-  });
-
-  // About bio
+  // ── About ──
   const bioEl = document.getElementById('about-bio-text');
   d.bio.forEach(p => {
     const el = document.createElement('p');
@@ -681,28 +660,38 @@ function init(d) {
     bioEl.appendChild(el);
   });
 
-  // About links
+  const extLinks = [
+    {key:'google_scholar', label:'Google Scholar'},
+    {key:'ssrn', label:'SSRN'},
+    {key:'twitter', label:'Twitter / X'}
+  ];
   const aboutLinks = document.getElementById('about-links');
   if (d.links.cv) {
     const a = document.createElement('a');
     a.href = d.links.cv; a.download = '';
-    a.className = 'btn-sm btn-sm-primary';
+    a.className = 'btn-sm btn-primary';
     a.textContent = '↓ Download CV';
+    aboutLinks.appendChild(a);
+  }
+  if (d.links.cv_online) {
+    const a = document.createElement('a');
+    a.href = d.links.cv_online; a.target='_blank'; a.rel='noopener';
+    a.className = 'btn-sm btn-outline';
+    a.textContent = '↗ View CV online';
     aboutLinks.appendChild(a);
   }
   extLinks.forEach(({key,label}) => {
     if (d.links[key]) {
       const a = document.createElement('a');
       a.href = d.links[key]; a.target='_blank'; a.rel='noopener';
-      a.className = 'btn-sm btn-sm-secondary';
+      a.className = 'btn-sm btn-outline';
       a.textContent = label;
       aboutLinks.appendChild(a);
     }
   });
 
-  // Affiliation tags
   const affilWrap = document.getElementById('affil-wrap');
-  [d.institution, d.title].forEach(text => {
+  [d.title, d.institution].forEach(text => {
     if (text) {
       const div = document.createElement('div');
       div.className = 'affil-tag';
@@ -711,7 +700,23 @@ function init(d) {
     }
   });
 
-  // Filter buttons
+  // ── Research intro + tags explainer ──
+  const introEl = document.getElementById('research-intro');
+  if (d.research_intro) {
+    d.research_intro.paragraphs.forEach(p => {
+      const el = document.createElement('p');
+      el.textContent = p;
+      introEl.appendChild(el);
+    });
+    if (d.research_intro.tags_note) {
+      const note = document.createElement('p');
+      note.className = 'tags-explainer';
+      note.textContent = d.research_intro.tags_note;
+      introEl.appendChild(note);
+    }
+  }
+
+  // ── Filter buttons ──
   const filterBar = document.getElementById('filter-bar');
   filterBar.querySelector('[data-tag="all"]').addEventListener('click', () => filterPapers('all'));
   d.tags.forEach(tag => {
@@ -723,18 +728,21 @@ function init(d) {
     filterBar.appendChild(btn);
   });
 
-  // Papers
+  // ── Papers ──
   const list = document.getElementById('papers-list');
   d.papers.forEach(paper => {
     const div = document.createElement('div');
     div.className = 'paper';
     div.dataset.tags = JSON.stringify(paper.tags);
 
-    const statusClass = {forthcoming:'status-forthcoming',published:'status-published',working:'status-working'}[paper.status] || 'status-working';
-    const statusLabel = {forthcoming:'Forthcoming',published:'Published',working:'Working Paper'}[paper.status] || paper.status;
+    const statusClass = {forthcoming:'status-forthcoming',published:'status-published',working:'status-working'}[paper.status]||'status-working';
+    const statusLabel = {forthcoming:'Forthcoming',published:'Published',working:'Working Paper'}[paper.status]||paper.status;
     const authorsText = paper.coauthors?.length ? 'With ' + paper.coauthors.join(', ') : '';
     const tagsHtml = paper.tags.map(t=>`<span class="tag">${t}</span>`).join('');
     const titleHtml = paper.link ? `<a href="${paper.link}" target="_blank" rel="noopener">${paper.title}</a>` : paper.title;
+    const mediaLinksHtml = (paper.media_links||[]).filter(m=>m.url).map(m=>
+      `<a class="paper-link" href="${m.url}" target="_blank" rel="noopener">↗ ${m.label}</a>`
+    ).join('');
 
     div.innerHTML = `
       <div class="paper-meta">
@@ -746,36 +754,72 @@ function init(d) {
       ${authorsText ? `<p class="paper-authors">${authorsText}</p>` : ''}
       <div class="paper-tags">${tagsHtml}</div>
       <div class="paper-actions">
-        ${paper.link ? `<a class="paper-link" href="${paper.link}" target="_blank" rel="noopener">→ Read paper</a>` : ''}
+        ${paper.link ? `<a class="paper-link" href="${paper.link}" target="_blank" rel="noopener">→ Journal</a>` : ''}
+        ${paper.pdf ? `<a class="paper-link" href="${paper.pdf}" target="_blank" rel="noopener">↓ PDF</a>` : ''}
+        ${mediaLinksHtml}
         ${paper.abstract ? `<button class="toggle-abstract">Abstract ▾</button>` : ''}
       </div>
       ${paper.abstract ? `<p class="paper-abstract">${paper.abstract}</p>` : ''}
     `;
-
     div.querySelector('.toggle-abstract')?.addEventListener('click', () => {
       const abs = div.querySelector('.paper-abstract');
       abs.classList.toggle('open');
       div.querySelector('.toggle-abstract').textContent = abs.classList.contains('open') ? 'Abstract ▴' : 'Abstract ▾';
     });
-
     list.appendChild(div);
   });
 
-  // Contact
+  // ── Media ──
+  const mediaGrid = document.getElementById('media-grid');
+  if (d.media && d.media.length) {
+    d.media.forEach(item => {
+      const a = document.createElement('a');
+      a.className = 'media-card';
+      a.href = item.url || '#';
+      if (item.url) { a.target='_blank'; a.rel='noopener'; }
+      const typeClass = {video:'video', article:'article', bio:'bio', interview:'article', podcast:'video'}[item.type] || 'article';
+      a.innerHTML = `
+        <span class="media-type ${typeClass}">${item.type}</span>
+        <h4>${item.title}</h4>
+        ${item.outlet ? `<p>${item.outlet}${item.year ? ' · ' + item.year : ''}</p>` : ''}
+        ${item.description ? `<p>${item.description}</p>` : ''}
+        ${item.url ? `<span class="media-arrow">→ View</span>` : ''}
+      `;
+      mediaGrid.appendChild(a);
+    });
+  } else {
+    mediaGrid.innerHTML = `<p style="color:var(--ink-light);font-size:14px;grid-column:1/-1;">Media links coming soon. Add items in the <code>media</code> array in data.json.</p>`;
+  }
+
+  // ── Contact (dark) ──
   const contactGrid = document.getElementById('contact-grid');
-  const contacts = [{label:'Email', value:d.email, href:'mailto:'+d.email},{label:'Institution', value:d.institution}];
-  extLinks.forEach(({key,label})=>{ if(d.links[key]) contacts.push({label, href:d.links[key], value:label}); });
-  contacts.forEach(item => {
+  const contactItems = [
+    {label:'Email', value:d.email, href:'mailto:'+d.email},
+    {label:'Institution', value:d.institution, href: d.links.institution || null}
+  ];
+  extLinks.forEach(({key,label})=>{ if(d.links[key]) contactItems.push({label, href:d.links[key], value:label}); });
+
+  contactItems.forEach(item => {
     const div = document.createElement('div');
     div.className = 'contact-item';
     div.innerHTML = `<label>${item.label}</label>`;
     div.innerHTML += item.href
-      ? `<a href="${item.href}" ${item.href.startsWith('mailto') ? '' : 'target="_blank"'}>${item.value}</a>`
+      ? `<a href="${item.href}" ${!item.href.startsWith('mailto') ? 'target="_blank" rel="noopener"' : ''}>${item.value}</a>`
       : `<p>${item.value}</p>`;
     contactGrid.appendChild(div);
   });
 
-  // Footer
+  // CV links in contact section
+  if (d.links.cv || d.links.cv_online) {
+    const div = document.createElement('div');
+    div.className = 'contact-item';
+    div.innerHTML = `<label>Curriculum Vitae</label>`;
+    if (d.links.cv) div.innerHTML += `<a href="${d.links.cv}" download class="btn-sm btn-white" style="margin-top:0.25rem;display:inline-flex;">↓ Download PDF</a>`;
+    if (d.links.cv_online) div.innerHTML += `<a href="${d.links.cv_online}" target="_blank" class="contact-cv-link">↗ View online</a>`;
+    contactGrid.appendChild(div);
+  }
+
+  // ── Footer ──
   document.getElementById('footer-name').textContent = d.name + ' · ' + d.institution;
   document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear();
 }
