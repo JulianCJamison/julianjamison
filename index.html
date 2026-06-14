@@ -805,8 +805,8 @@ function init(d) {
     const div = document.createElement('div');
     div.className = 'contact-item';
     div.innerHTML = `<label>Curriculum Vitae</label>`;
-    if (d.links.cv) div.innerHTML += `<a href="${d.links.cv}" download class="btn-sm btn-white" style="margin-top:0.25rem;display:inline-flex;">↓ Download PDF</a>`;
-    if (d.links.cv_online) div.innerHTML += `<a href="${d.links.cv_online}" target="_blank" class="contact-cv-link">↗ View online</a>`;
+    if (d.links.cv) div.innerHTML += `<a href="${d.links.cv}" download style="margin-top:0.4rem;display:inline-flex;align-items:center;gap:6px;padding:7px 16px;font-size:12.5px;font-weight:500;font-family:var(--sans);color:#fff;border:1px solid rgba(255,255,255,0.45);border-radius:3px;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.9)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.45)'">↓ Download PDF</a>`;
+    if (d.links.cv_online) div.innerHTML += `<a href="${d.links.cv_online}" target="_blank" style="margin-top:0.4rem;display:inline-flex;align-items:center;gap:6px;padding:7px 16px;font-size:12.5px;font-weight:500;font-family:var(--sans);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.25);border-radius:3px;text-decoration:none;transition:border-color 0.15s;" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.7)';this.style.borderColor='rgba(255,255,255,0.25)'">↗ View online</a>`;
     contactGrid.appendChild(div);
   }
 
