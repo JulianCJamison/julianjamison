@@ -646,9 +646,9 @@ function init(d) {
   });
 
   // ── Hero / Home ──
-  document.getElementById('hero-eyebrow').textContent = d.title + ' · ' + d.institution;
+  document.getElementById('hero-eyebrow').textContent = '';
   document.getElementById('hero-name').textContent = d.name;
-  document.getElementById('hero-subtitle').textContent = d.home_tagline || '';
+  document.getElementById('hero-subtitle').textContent = d.title + ' · ' + d.institution;
   document.getElementById('hero-bio-short').textContent = d.home_text || d.bio[0];
 
   // ── About ──
