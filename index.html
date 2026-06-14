@@ -6,7 +6,7 @@
   <title>Julian C. Jamison — Professor of Economics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,7 +15,7 @@
       --ink-mid: #4a4a45;
       --ink-light: #8a8a82;
       --rule: #ddddd5;
-      --bg: #fafaf7;
+      --bg: #f7f7f4;
       --bg-card: #ffffff;
       --accent: #1a3a6b;
       --accent-soft: #e8edf5;
@@ -23,9 +23,10 @@
       --tag-text: #4a4a45;
       --serif: 'EB Garamond', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
-      --max: 860px;
-      --col: 620px;
+      --max: 900px;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--sans);
@@ -36,131 +37,277 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
+    /* ── NAV ─────────────────────────────── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--rule);
-      padding: 0 2rem;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 52px;
+      padding: 0 2.5rem;
+      background: rgba(247,247,244,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    nav.scrolled {
+      border-bottom-color: var(--rule);
+      background: rgba(247,247,244,0.97);
     }
     .nav-name {
       font-family: var(--serif);
-      font-size: 16px;
-      letter-spacing: 0.01em;
+      font-size: 16.5px;
       color: var(--ink);
       text-decoration: none;
+      letter-spacing: 0.01em;
     }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      font-size: 13px;
-      font-weight: 400;
+      font-size: 12.5px;
+      font-weight: 500;
       color: var(--ink-mid);
       text-decoration: none;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--ink); }
 
-    /* LAYOUT */
-    .page { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
-
-    /* HERO */
+    /* ── HERO ────────────────────────────── */
     .hero {
-      padding: 5rem 0 4rem;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 3rem;
-      align-items: start;
-      border-bottom: 1px solid var(--rule);
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: stretch;
+      overflow: hidden;
+      background: #0f1f3d;
     }
+
+    /* subtle grain overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 65% 50%, rgba(26,58,107,0.55) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-photo-bg {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 48%;
+      background: #1a2a45;
+      overflow: hidden;
+    }
+    .hero-photo-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      opacity: 0.85;
+      mix-blend-mode: luminosity;
+    }
+    /* gradient fade on left edge of photo */
+    .hero-photo-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0f1f3d 0%, transparent 35%);
+      z-index: 1;
+    }
+    /* gradient fade at bottom */
+    .hero-photo-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 30%;
+      background: linear-gradient(to top, #0f1f3d 0%, transparent 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
+      padding: 10rem 2.5rem 6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .hero-eyebrow {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--ink-light);
-      margin-bottom: 1rem;
-    }
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 5vw, 3rem);
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-      color: var(--ink);
+      color: rgba(255,255,255,0.45);
       margin-bottom: 1.25rem;
     }
-    .hero-institution {
-      font-size: 14px;
-      color: var(--ink-mid);
-      margin-bottom: 2rem;
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
       font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1rem;
+      max-width: 520px;
     }
-    .hero-bio p {
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      margin-bottom: 2rem;
+    }
+
+    .hero-bio-short {
       font-size: 15.5px;
       line-height: 1.75;
-      color: var(--ink-mid);
-      max-width: 560px;
-      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.72);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
     }
-    .hero-bio p:last-child { margin-bottom: 0; }
-    .hero-actions {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
+
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 18px;
+      gap: 7px;
+      padding: 10px 22px;
       font-size: 13px;
       font-weight: 500;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 3px;
+      transition: all 0.18s;
+      cursor: pointer;
+      border: none;
+      font-family: var(--sans);
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: #fff;
+      color: var(--accent);
+    }
+    .btn-primary:hover { background: #e8edf5; }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.6);
+      color: #fff;
+    }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.3);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-hint svg { opacity: 0.4; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(5px); }
+    }
+
+    /* ── PAGE CONTENT ────────────────────── */
+    .page { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+
+    section { padding: 4rem 0; border-bottom: 1px solid var(--rule); }
+    section:last-child { border-bottom: none; padding-bottom: 5rem; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 2.25rem;
+    }
+
+    /* ── ABOUT strip ─────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-bio p {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin-bottom: 1rem;
+    }
+    .about-bio p:last-child { margin-bottom: 0; }
+    .about-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+    .btn-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      font-size: 12.5px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 3px;
       transition: all 0.15s;
       cursor: pointer;
       border: none;
+      font-family: var(--sans);
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { background: #0f2a52; }
-    .btn-secondary {
+    .btn-sm-primary { background: var(--accent); color: #fff; }
+    .btn-sm-primary:hover { background: #0f2a52; }
+    .btn-sm-secondary {
       background: transparent;
       color: var(--ink-mid);
       border: 1px solid var(--rule);
     }
-    .btn-secondary:hover { border-color: var(--ink-mid); color: var(--ink); }
+    .btn-sm-secondary:hover { border-color: var(--ink-mid); color: var(--ink); }
 
-    /* PHOTO */
-    .hero-photo {
-      width: 160px;
-      flex-shrink: 0;
-    }
-    .hero-photo img {
-      width: 160px;
-      height: 200px;
+    .about-photo-col { display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-photo {
+      width: 200px;
+      height: 260px;
       object-fit: cover;
+      object-position: center top;
       border-radius: 3px;
       display: block;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
     }
-    .photo-placeholder {
-      width: 160px;
-      height: 200px;
+    .about-photo-placeholder {
+      width: 200px;
+      height: 260px;
       background: var(--accent-soft);
       border-radius: 3px;
       display: flex;
@@ -168,23 +315,24 @@
       justify-content: center;
       color: var(--accent);
       font-family: var(--serif);
-      font-size: 2.5rem;
-      letter-spacing: -0.02em;
+      font-size: 3rem;
     }
-
-    /* SECTIONS */
-    section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
-    section:last-child { border-bottom: none; }
-    .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .affiliation-logos {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .affil-tag {
+      font-size: 11.5px;
       color: var(--ink-light);
-      margin-bottom: 2rem;
+      padding: 5px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      text-align: center;
+      background: var(--bg-card);
     }
 
-    /* RESEARCH */
+    /* ── RESEARCH ────────────────────────── */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -192,53 +340,44 @@
       margin-bottom: 2.5rem;
     }
     .filter-btn {
-      padding: 5px 14px;
+      padding: 6px 16px;
       font-size: 12.5px;
       font-weight: 400;
       border: 1px solid var(--rule);
       border-radius: 100px;
-      background: transparent;
+      background: var(--bg-card);
       color: var(--ink-mid);
       cursor: pointer;
       transition: all 0.15s;
       font-family: var(--sans);
     }
-    .filter-btn:hover { border-color: var(--ink-mid); color: var(--ink); }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
     .filter-btn.active {
       background: var(--accent);
       border-color: var(--accent);
       color: #fff;
     }
 
-    /* PAPER CARD */
-    .papers-list { display: flex; flex-direction: column; gap: 0; }
+    .papers-list { display: flex; flex-direction: column; }
     .paper {
       padding: 1.75rem 0;
       border-bottom: 1px solid var(--rule);
-      transition: opacity 0.2s;
     }
     .paper:last-child { border-bottom: none; }
     .paper.hidden { display: none; }
+
     .paper-meta {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 0.5rem;
       flex-wrap: wrap;
+      margin-bottom: 0.45rem;
     }
-    .paper-journal {
-      font-size: 12.5px;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.01em;
-    }
-    .paper-year {
-      font-size: 12.5px;
-      color: var(--ink-light);
-    }
+    .paper-journal { font-size: 12.5px; font-weight: 500; color: var(--accent); }
+    .paper-year { font-size: 12.5px; color: var(--ink-light); }
     .paper-status {
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 10.5px;
+      font-weight: 600;
       padding: 2px 8px;
       border-radius: 3px;
       text-transform: uppercase;
@@ -247,46 +386,29 @@
     .status-forthcoming { background: #fef3e2; color: #92580a; }
     .status-published { background: #e5f5ee; color: #1a6b3c; }
     .status-working { background: #f0f0ea; color: #4a4a45; }
+
     .paper h3 {
       font-family: var(--serif);
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 400;
       line-height: 1.35;
       color: var(--ink);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
-    .paper h3 a {
-      color: inherit;
-      text-decoration: none;
-    }
+    .paper h3 a { color: inherit; text-decoration: none; }
     .paper h3 a:hover { color: var(--accent); }
-    .paper-authors {
-      font-size: 13px;
-      color: var(--ink-light);
-      margin-bottom: 0.75rem;
-    }
-    .paper-abstract {
-      font-size: 14px;
-      color: var(--ink-mid);
-      line-height: 1.65;
-      max-width: 640px;
-      display: none;
-    }
-    .paper-abstract.open { display: block; margin-top: 0.75rem; }
-    .paper-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.75rem; }
+
+    .paper-authors { font-size: 13px; color: var(--ink-light); margin-bottom: 0.65rem; }
+    .paper-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
-      font-size: 11.5px;
+      font-size: 11px;
       padding: 3px 10px;
       border-radius: 3px;
       background: var(--tag-bg);
       color: var(--tag-text);
       border: 1px solid var(--rule);
     }
-    .paper-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.75rem;
-    }
+    .paper-actions { display: flex; gap: 1.25rem; margin-top: 0.7rem; }
     .paper-link {
       font-size: 12.5px;
       color: var(--accent);
@@ -304,35 +426,47 @@
       font-family: var(--sans);
     }
     .toggle-abstract:hover { color: var(--ink); }
+    .paper-abstract {
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      max-width: 660px;
+      display: none;
+      margin-top: 0.75rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+    }
+    .paper-abstract.open { display: block; }
 
-    /* CV SECTION */
-    .cv-download-card {
+    /* ── CV ──────────────────────────────── */
+    .cv-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.5rem 2rem;
+      padding: 2rem 2.5rem;
       border: 1px solid var(--rule);
       border-radius: 4px;
       background: var(--bg-card);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
     }
-    .cv-info h3 {
+    .cv-card h3 {
       font-family: var(--serif);
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 400;
       margin-bottom: 0.25rem;
     }
-    .cv-info p { font-size: 13px; color: var(--ink-light); }
+    .cv-card p { font-size: 13px; color: var(--ink-light); }
 
-    /* CONTACT */
+    /* ── CONTACT ─────────────────────────── */
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
     }
     .contact-item label {
       display: block;
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 10.5px;
+      font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink-light);
@@ -345,60 +479,88 @@
     }
     .contact-item a:hover { color: var(--accent); }
 
-    /* FOOTER */
+    /* ── FOOTER ──────────────────────────── */
     footer {
-      padding: 2.5rem 2rem;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2rem 2.5rem;
       border-top: 1px solid var(--rule);
-      text-align: center;
-      font-size: 12.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
       color: var(--ink-light);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
-      nav { padding: 0 1rem; }
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 680px) {
+      nav { padding: 0 1.25rem; }
       .nav-links { gap: 1.25rem; }
-      .page { padding: 0 1rem; }
-      .hero { grid-template-columns: 1fr; padding: 3rem 0 2.5rem; }
-      .hero-photo { order: -1; }
-      .hero-photo img, .photo-placeholder { width: 100px; height: 130px; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .cv-download-card { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .page { padding: 0 1.25rem; }
+      .hero-content { padding: 8rem 1.25rem 5rem; }
+      .hero-photo-bg { width: 100%; opacity: 0.15; }
+      .hero-photo-bg::before { background: linear-gradient(to right, #0f1f3d 0%, #0f1f3d 100%); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo-col { flex-direction: row; align-items: center; }
+      .about-photo, .about-photo-placeholder { width: 120px; height: 155px; }
+      .cv-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<nav>
+<!-- NAV -->
+<nav id="nav">
   <a href="#" class="nav-name">Julian C. Jamison</a>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#cv">CV</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-photo-bg" id="hero-photo-bg">
+    <!-- photo injected by JS -->
+  </div>
+  <div class="hero-content page">
+    <p class="hero-eyebrow">University of Exeter</p>
+    <h1 id="hero-name">Julian C. Jamison</h1>
+    <p class="hero-subtitle" id="hero-subtitle"></p>
+    <div class="hero-divider"></div>
+    <p class="hero-bio-short" id="hero-bio-short"></p>
+    <div class="hero-actions" id="hero-actions"></div>
+  </div>
+  <div class="scroll-hint">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</div>
+
 <main class="page">
 
-  <!-- HERO -->
-  <div class="hero" id="about">
-    <div class="hero-text">
-      <p class="hero-eyebrow">Academic Profile</p>
-      <h1 id="hero-name">Julian C. Jamison</h1>
-      <p class="hero-institution" id="hero-institution"></p>
-      <div class="hero-bio" id="hero-bio"></div>
-      <div class="hero-actions" id="hero-actions"></div>
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-bio">
+        <div id="about-bio-text"></div>
+        <div class="about-links" id="about-links"></div>
+      </div>
+      <div class="about-photo-col">
+        <div id="about-photo-wrap"></div>
+        <div class="affiliation-logos" id="affil-wrap"></div>
+      </div>
     </div>
-    <div class="hero-photo">
-      <div class="photo-placeholder" id="hero-photo">JJ</div>
-    </div>
-  </div>
+  </section>
 
   <!-- RESEARCH -->
   <section id="research">
     <p class="section-label">Research</p>
     <div class="filter-bar" id="filter-bar">
-      <button class="filter-btn active" data-tag="all">All</button>
+      <button class="filter-btn active" data-tag="all">All papers</button>
     </div>
     <div class="papers-list" id="papers-list"></div>
   </section>
@@ -406,14 +568,12 @@
   <!-- CV -->
   <section id="cv">
     <p class="section-label">Curriculum Vitae</p>
-    <div class="cv-download-card">
-      <div class="cv-info">
-        <h3>Full CV</h3>
-        <p>Updated version available for download</p>
+    <div class="cv-card">
+      <div>
+        <h3>Full Curriculum Vitae</h3>
+        <p>Complete academic record including positions, publications, and grants</p>
       </div>
-      <a href="cv.pdf" class="btn btn-primary" download>
-        ↓ Download CV (PDF)
-      </a>
+      <a href="cv.pdf" class="btn-sm btn-sm-primary" download>↓ Download CV (PDF)</a>
     </div>
   </section>
 
@@ -426,56 +586,134 @@
 </main>
 
 <footer>
-  <p id="footer-text"></p>
+  <span id="footer-name"></span>
+  <span id="footer-year"></span>
 </footer>
 
 <script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Load data
 fetch('data.json')
   .then(r => r.json())
-  .then(data => init(data))
-  .catch(() => console.error('Could not load data.json'));
+  .then(init)
+  .catch(e => console.error('Could not load data.json', e));
+
+function tryPhoto(ids, extensions, callback) {
+  // Try loading photo with multiple possible extensions
+  let i = 0;
+  function tryNext() {
+    if (i >= extensions.length) { callback(null); return; }
+    const src = extensions[i++];
+    const img = new Image();
+    img.onload = () => callback(src);
+    img.onerror = tryNext;
+    img.src = src;
+  }
+  tryNext();
+}
 
 function init(d) {
   document.title = d.name + ' — ' + d.title;
 
-  document.getElementById('hero-name').textContent = d.name;
-  document.getElementById('hero-institution').textContent =
-    d.title + ' · ' + d.institution;
+  // Try loading photo (supports .jpg, .jpeg, .png, .webp)
+  tryPhoto(null, ['profile.jpg','profile.jpeg','profile.png','profile.webp'], src => {
+    const bgEl = document.getElementById('hero-photo-bg');
+    const aboutWrap = document.getElementById('about-photo-wrap');
+    if (src) {
+      // Hero background photo
+      const heroImg = document.createElement('img');
+      heroImg.src = src;
+      heroImg.alt = d.name;
+      bgEl.appendChild(heroImg);
+      // About section photo
+      const aboutImg = document.createElement('img');
+      aboutImg.src = src;
+      aboutImg.alt = d.name;
+      aboutImg.className = 'about-photo';
+      aboutWrap.appendChild(aboutImg);
+    } else {
+      bgEl.style.background = '#1a2a45';
+      const ph = document.createElement('div');
+      ph.className = 'about-photo-placeholder';
+      ph.textContent = d.name.split(' ').map(w=>w[0]).join('').slice(0,2);
+      aboutWrap.appendChild(ph);
+    }
+  });
 
-  const bioEl = document.getElementById('hero-bio');
+  // Hero text
+  document.getElementById('hero-name').textContent = d.name;
+  document.getElementById('hero-subtitle').textContent = d.title + ' · ' + d.institution;
+  document.getElementById('hero-bio-short').textContent = d.bio[0];
+
+  // Hero action buttons
+  const heroActions = document.getElementById('hero-actions');
+  if (d.links.cv) {
+    const a = document.createElement('a');
+    a.href = d.links.cv; a.download = '';
+    a.className = 'btn btn-primary';
+    a.textContent = '↓ Download CV';
+    heroActions.appendChild(a);
+  }
+  const extLinks = [
+    {key:'google_scholar', label:'Google Scholar'},
+    {key:'ssrn', label:'SSRN'},
+    {key:'twitter', label:'Twitter / X'}
+  ];
+  extLinks.forEach(({key,label}) => {
+    if (d.links[key]) {
+      const a = document.createElement('a');
+      a.href = d.links[key]; a.target='_blank'; a.rel='noopener';
+      a.className = 'btn btn-ghost';
+      a.textContent = label;
+      heroActions.appendChild(a);
+    }
+  });
+
+  // About bio
+  const bioEl = document.getElementById('about-bio-text');
   d.bio.forEach(p => {
     const el = document.createElement('p');
     el.textContent = p;
     bioEl.appendChild(el);
   });
 
-  const actions = document.getElementById('hero-actions');
+  // About links
+  const aboutLinks = document.getElementById('about-links');
   if (d.links.cv) {
     const a = document.createElement('a');
-    a.href = d.links.cv;
-    a.download = '';
-    a.className = 'btn btn-primary';
+    a.href = d.links.cv; a.download = '';
+    a.className = 'btn-sm btn-sm-primary';
     a.textContent = '↓ Download CV';
-    actions.appendChild(a);
+    aboutLinks.appendChild(a);
   }
-  const extLinks = [
-    { key: 'google_scholar', label: 'Google Scholar' },
-    { key: 'ssrn', label: 'SSRN' },
-    { key: 'twitter', label: 'Twitter / X' }
-  ];
-  extLinks.forEach(({ key, label }) => {
+  extLinks.forEach(({key,label}) => {
     if (d.links[key]) {
       const a = document.createElement('a');
-      a.href = d.links[key];
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.className = 'btn btn-secondary';
+      a.href = d.links[key]; a.target='_blank'; a.rel='noopener';
+      a.className = 'btn-sm btn-sm-secondary';
       a.textContent = label;
-      actions.appendChild(a);
+      aboutLinks.appendChild(a);
     }
   });
 
+  // Affiliation tags
+  const affilWrap = document.getElementById('affil-wrap');
+  [d.institution, d.title].forEach(text => {
+    if (text) {
+      const div = document.createElement('div');
+      div.className = 'affil-tag';
+      div.textContent = text;
+      affilWrap.appendChild(div);
+    }
+  });
+
+  // Filter buttons
   const filterBar = document.getElementById('filter-bar');
+  filterBar.querySelector('[data-tag="all"]').addEventListener('click', () => filterPapers('all'));
   d.tags.forEach(tag => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
@@ -484,37 +722,19 @@ function init(d) {
     btn.addEventListener('click', () => filterPapers(tag));
     filterBar.appendChild(btn);
   });
-  filterBar.querySelector('[data-tag="all"]').addEventListener('click', () => filterPapers('all'));
 
+  // Papers
   const list = document.getElementById('papers-list');
   d.papers.forEach(paper => {
     const div = document.createElement('div');
     div.className = 'paper';
     div.dataset.tags = JSON.stringify(paper.tags);
 
-    const statusClass = {
-      forthcoming: 'status-forthcoming',
-      published: 'status-published',
-      working: 'status-working'
-    }[paper.status] || 'status-working';
-
-    const statusLabel = {
-      forthcoming: 'Forthcoming',
-      published: 'Published',
-      working: 'Working Paper'
-    }[paper.status] || paper.status;
-
-    const authorsText = paper.coauthors && paper.coauthors.length > 0
-      ? 'With ' + paper.coauthors.join(', ')
-      : '';
-
-    const tagsHtml = paper.tags
-      .map(t => `<span class="tag">${t}</span>`)
-      .join('');
-
-    const titleHtml = paper.link
-      ? `<a href="${paper.link}" target="_blank" rel="noopener">${paper.title}</a>`
-      : paper.title;
+    const statusClass = {forthcoming:'status-forthcoming',published:'status-published',working:'status-working'}[paper.status] || 'status-working';
+    const statusLabel = {forthcoming:'Forthcoming',published:'Published',working:'Working Paper'}[paper.status] || paper.status;
+    const authorsText = paper.coauthors?.length ? 'With ' + paper.coauthors.join(', ') : '';
+    const tagsHtml = paper.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+    const titleHtml = paper.link ? `<a href="${paper.link}" target="_blank" rel="noopener">${paper.title}</a>` : paper.title;
 
     div.innerHTML = `
       <div class="paper-meta">
@@ -532,53 +752,38 @@ function init(d) {
       ${paper.abstract ? `<p class="paper-abstract">${paper.abstract}</p>` : ''}
     `;
 
-    const toggler = div.querySelector('.toggle-abstract');
-    if (toggler) {
-      toggler.addEventListener('click', () => {
-        const abs = div.querySelector('.paper-abstract');
-        abs.classList.toggle('open');
-        toggler.textContent = abs.classList.contains('open') ? 'Abstract ▴' : 'Abstract ▾';
-      });
-    }
+    div.querySelector('.toggle-abstract')?.addEventListener('click', () => {
+      const abs = div.querySelector('.paper-abstract');
+      abs.classList.toggle('open');
+      div.querySelector('.toggle-abstract').textContent = abs.classList.contains('open') ? 'Abstract ▴' : 'Abstract ▾';
+    });
 
     list.appendChild(div);
   });
 
+  // Contact
   const contactGrid = document.getElementById('contact-grid');
-  const contactItems = [
-    { label: 'Email', value: d.email, href: 'mailto:' + d.email },
-    { label: 'Institution', value: d.institution }
-  ];
-  extLinks.forEach(({ key, label }) => {
-    if (d.links[key]) contactItems.push({ label, href: d.links[key], value: d.links[key] });
-  });
-  contactItems.forEach(item => {
+  const contacts = [{label:'Email', value:d.email, href:'mailto:'+d.email},{label:'Institution', value:d.institution}];
+  extLinks.forEach(({key,label})=>{ if(d.links[key]) contacts.push({label, href:d.links[key], value:label}); });
+  contacts.forEach(item => {
     const div = document.createElement('div');
     div.className = 'contact-item';
     div.innerHTML = `<label>${item.label}</label>`;
-    if (item.href) {
-      div.innerHTML += `<a href="${item.href}" target="${item.href.startsWith('mailto') ? '_self' : '_blank'}">${item.value}</a>`;
-    } else {
-      div.innerHTML += `<p>${item.value}</p>`;
-    }
+    div.innerHTML += item.href
+      ? `<a href="${item.href}" ${item.href.startsWith('mailto') ? '' : 'target="_blank"'}>${item.value}</a>`
+      : `<p>${item.value}</p>`;
     contactGrid.appendChild(div);
   });
 
-  document.getElementById('footer-text').textContent =
-    `${d.name} · ${d.institution} · ${new Date().getFullYear()}`;
+  // Footer
+  document.getElementById('footer-name').textContent = d.name + ' · ' + d.institution;
+  document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear();
 }
 
 function filterPapers(tag) {
-  document.querySelectorAll('.filter-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.tag === tag);
-  });
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.tag === tag));
   document.querySelectorAll('.paper').forEach(p => {
-    if (tag === 'all') {
-      p.classList.remove('hidden');
-    } else {
-      const tags = JSON.parse(p.dataset.tags || '[]');
-      p.classList.toggle('hidden', !tags.includes(tag));
-    }
+    p.classList.toggle('hidden', tag !== 'all' && !JSON.parse(p.dataset.tags||'[]').includes(tag));
   });
 }
 </script>
